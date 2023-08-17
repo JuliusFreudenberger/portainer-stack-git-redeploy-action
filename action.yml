@@ -1,6 +1,6 @@
-name: Portainer Stack Redeploy
-author: Dzianis Nikifaraŭ
-description: Action for request to Portainer API for redeploy stack with pull latest images
+name: Portainer Stack Git Redeploy
+author: Julius Freudenberger
+description: Action for request to Portainer API for redeploy stack configured to use the docker-compose.yaml from a git repository with pull latest images and possibility to set environment variables
 
 inputs:
   portainerUrl:
@@ -16,6 +16,9 @@ inputs:
     description: 'Endpoint ID'
     required: false
     default: ''
+  environment:
+    description: 'Environment variables'
+    required: false
 
 runs:
   using: 'node16'
