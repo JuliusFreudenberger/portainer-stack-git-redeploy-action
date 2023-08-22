@@ -2819,6 +2819,8 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(186)
 
+console.log('Preparing stack deployment')
+
 let portainerUrl = core.getInput("portainerUrl")
 const accessToken = core.getInput("accessToken")
 const stackId = parseInt(core.getInput("stackId"))
@@ -2853,14 +2855,13 @@ const postDataObject = {
   pullImage: true,
 }
 
-console.dir(environmentVariables)
 if (environmentVariables !== undefined && environmentVariables !== "") {
   postDataObject.env = JSON.parse(environmentVariables)
 }
 
 const postData = JSON.stringify(postDataObject)
 
-console.dir(postData)
+console.log(`Deploying stack ${stackId} on portainer host ${portainerUrl} ${postDataObject.env ? 'With environment variables ' + JSON.stringify(postDataObject.env) : 'clearing all environment variables.'}`)
 
 const req = client.request(`${portainerUrl}/api/stacks/${stackId}/git/redeploy` + (isNaN(endpointId) ? "" : `?endpointId=${endpointId}`), {
   method: "PUT",
@@ -2874,6 +2875,7 @@ const req = client.request(`${portainerUrl}/api/stacks/${stackId}/git/redeploy` 
     core.setFailed(res.statusMessage)
     process.exit(2)
   }
+  console.log('Stack deployed successfully')
 })
   .on("error", (error) => {
     core.setFailed(error.message)
