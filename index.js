@@ -6,6 +6,7 @@ let portainerUrl = core.getInput("portainerUrl")
 const accessToken = core.getInput("accessToken")
 const stackId = parseInt(core.getInput("stackId"))
 const endpointId = parseInt(core.getInput("endpointId"))
+const repositoryAuthentication = core.getInput("repositoryAuthentication")
 const environmentVariables = core.getInput("environment")
 
 if (isNaN(stackId)) {
@@ -34,6 +35,10 @@ core.setSecret(accessToken)
 
 const postDataObject = {
   pullImage: true,
+}
+
+if (repositoryAuthentication === true || repositoryAuthentication === 'true') {
+  postDataObject.repositoryAuthentication = true
 }
 
 if (environmentVariables !== undefined && environmentVariables !== "") {

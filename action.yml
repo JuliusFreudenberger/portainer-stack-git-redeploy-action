@@ -16,6 +16,10 @@ inputs:
     description: 'Endpoint ID'
     required: false
     default: ''
+  repositoryAuthentication:
+    description: 'Use stored credentials to pull docker-compose.yaml from git repository'
+    required: false
+    default: false
   environment:
     description: 'Environment variables'
     required: false

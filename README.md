@@ -21,6 +21,10 @@ This is a fork of [wirgen/portainer-stack-redeploy-action](https://github.com/wi
 
 ID of endpoint (environment). Required if your stack is not in local environment
 
+### `repositoryAuthentication`
+
+Use stored credentials to pull docker-compose.yaml from git repository. When credentials are stored, but this is not set to `true`, the action will fail
+
 ### `environment`
 
 Environment variables to set on the stack. When omitted, all existing variables will be cleared from the stack. Must be input as a JSON String; one array of objects each with the keys `name` and `value`
